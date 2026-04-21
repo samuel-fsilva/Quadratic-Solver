@@ -1,0 +1,161 @@
+@font-face {
+  font-family: Modern Roman;
+  src: url(../fonts/latinmodern-math.otf);
+}
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  font-family: Arial, Helvetica, sans-serif;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+h2 {
+  height: 2em;
+  text-align: center;
+  margin: 0px;
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: 100;
+}
+#card {
+  height: 70%;
+  width: 70%;
+  min-width: 900px;
+  min-height: 400px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border-radius: 30px;
+  display: grid;
+  grid-template-columns: 9fr 4fr;
+  overflow: hidden;
+  background: radial-gradient(#ffffff, #e9e4f0);
+}
+#card .card-child {
+  display: grid;
+}
+#inputs-box {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  padding-left: 120px;
+  padding-right: 120px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  z-index: 2;
+
+  grid-template-rows: auto 2fr 1fr;
+}
+#input-stylized {
+  border-bottom: 1px solid rgba(90, 89, 116, 0.411);
+  height: 100px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#input-stylized input,
+#input-stylized select,
+#input-stylized p,
+#input-stylized span {
+  font-family: Modern Roman;
+  background: transparent;
+}
+
+#input-stylized input,
+#input-stylized select {
+  border: none;
+  outline: none;
+  transition: 250ms;
+}
+
+#input-stylized input:hover,
+#input-stylized select:hover {
+  background: rgba(128, 128, 128, 0.26);
+}
+#input-stylized input::placeholder {
+  color: black;
+}
+#input-stylized input {
+  width: 1ch;
+  height: 60px;
+  font-size: 40px;
+  display: inline;
+}
+#input-stylized input[type="number"] {
+  text-align: right;
+}
+#input-stylized span {
+  display: flex;
+  font-size: 38px;
+  position: relative;
+  right: 4px;
+  bottom: 4px;
+}
+#input-stylized select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 30px;
+  text-align: center;
+  height: 50px;
+  font-size: 30px;
+}
+#input-stylized p {
+  font-size: 40px;
+
+  margin: 0;
+  width: 2em;
+  text-align: center;
+}
+
+#button-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#button-box button {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 20px;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  transition: 250ms;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: auto;
+}
+button svg {
+  height: 23px;
+  aspect-ratio: 1 / 1;
+  display: none;
+  margin-right: 5px;
+}
+#button-box button:hover {
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.144);
+}
+#button-box button:active {
+  background: black;
+  color: white;
+}
+#display-box {
+  z-index: 1;
+  overflow: hidden;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+#result-box {
+  position: relative;
+  right: 100%;
+  color: black;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(3, 1fr);
+}

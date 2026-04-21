@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quadratic Solver</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <script type="module">
+      import { LaTeXJSComponent } from "https://cdn.jsdelivr.net/npm/latex.js/dist/latex.mjs";
+      customElements.define("latex-js", LaTeXJSComponent);
+    </script>
+    <style>
+      latex-js {
+        margin: 0;
+        display: flex;
+        scale: 1.5;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="card">
+      <div id="inputs-box" class="card-child">
+        <h2>Insira a equação de 2° Grau Aqui:</h2>
+
+        <div id="input-stylized">
+          <select name="" id="signal-select01" class="signal-select">
+            <option value="+">+</option>
+            <option value="-">-</option>
+          </select>
+          <input
+            type="number"
+            name=""
+            id="c1"
+            placeholder="a"
+            autocomplete="off"
+          />
+          <input
+            type="text"
+            id="variable-input01"
+            class="variable-input"
+            placeholder="x"
+            autocomplete="off"
+          />
+          <span>²</span>
+          <select name="" id="signal-select02" class="signal-select">
+            <option value="+">+</option>
+            <option value="-">-</option>
+          </select>
+          <input
+            type="number"
+            name=""
+            id="c2"
+            placeholder="b"
+            autocomplete="off"
+          />
+          <input
+            type="text"
+            id="variable-input02"
+            class="variable-input"
+            placeholder="x"
+            autocomplete="off"
+          />
+          <select name="" id="signal-select03" class="signal-select">
+            <option value="+">+</option>
+            <option value="-">-</option>
+          </select>
+          <input
+            type="number"
+            name=""
+            id="c3"
+            placeholder="c"
+            autocomplete="off"
+          />
+          <p>= 0</p>
+        </div>
+        <div id="button-box">
+          <button id="submit">
+            Calcular
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M12 1C18.0751 1 23 5.92487 23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12C1 5.92487 5.92487 1 12 1ZM12 7.83335C12 7.4963 12.2088 7.19244 12.5291 7.06346C12.8494 6.93447 13.2181 7.00577 13.4632 7.2441L17.7489 11.4107C18.0837 11.7362 18.0837 12.2638 17.7489 12.5893L13.4632 16.7559C13.2181 16.9942 12.8494 17.0655 12.5291 16.9365C12.2088 16.8076 12 16.5037 12 16.1666V14H7C6.44771 14 6 13.5523 6 13V11C6 10.4477 6.44771 10 7 10H12V7.83335Z"
+                fill="#000000"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div id="display-box" class="card-child">
+        <div id="result-box"></div>
+        <div id="graph-box"></div>
+      </div>
+    </div>
+
+    <script>
+      const thisInputs = document.querySelectorAll("input");
+      thisInputs.forEach((input) => {
+        input.addEventListener("input", () => {
+          if (input.value.length > 1) {
+            input.style.width = input.value.length + "ch";
+          } else {
+            input.style.width = "1ch";
+          }
+        });
+      });
+    </script>
+    <script src="js/dom.js"></script>
+    <script src="js/calc.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/validation.js"></script>
+    <script src="js/animations.js"></script>
+  </body>
+</html>

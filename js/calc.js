@@ -147,4 +147,7 @@ const myMath = {
     }
     return response;
   },
+  toFrac: (a)=>{
+    
+  }
 };

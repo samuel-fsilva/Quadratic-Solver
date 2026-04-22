@@ -147,4 +147,18 @@ const myMath = {
     }
     return response;
   },
+  toFrac: (a) => {
+    if (typeof a == "number") {
+      let tmp = 0;
+      let precision = 1e-5;
+      for (let i = 1; i <= 10000; i++) {
+        tmp = a * i;
+        if (Math.abs(Math.ceil(tmp) - tmp) <= precision) {
+          return `${Math.round(a * i)}/${i}`;
+        }
+      }
+    } else {
+      throw new Error("");
+    }
+  },
 };

@@ -147,15 +147,74 @@ const myMath = {
     }
     return response;
   },
-  toFrac: (a) => {
+  toFrac: (a, methodf) => {
+    let tmp = 0;
     if (typeof a == "number") {
-      let tmp = 0;
-      let precision = 1e-5;
-      for (let i = 1; i <= 10000; i++) {
-        tmp = a * i;
-        if (Math.abs(Math.ceil(tmp) - tmp) <= precision) {
-          return `${Math.round(a * i)}/${i}`;
+      if (methodf == "brute") {
+        let precision = 1e-5;
+        for (let i = 1; i <= 10000; i++) {
+          tmp = a * i;
+          if (Math.abs(Math.ceil(tmp) - tmp) <= precision) {
+            return `${Math.round(a * i)}/${i}`;
+          }
         }
+      } else if (methodf == "compost" || methodf == undefined) {
+        function continuedFraction(x, maxIterations = 20, tolerance = 1e-12) {
+          const cf = [];
+
+          let value = a;
+
+          for (let i = 0; i < maxIterations; i++) {
+            const a = Math.floor(value);
+            cf.push(a);
+
+            const frac = value - a;
+
+            if (Math.abs(frac) < tolerance) break;
+
+            value = 1 / frac;
+          }
+
+          return cf;
+        }
+        function convergents(cf) {
+          const result = [];
+
+          let h1 = 1,
+            h0 = 0;
+          let k1 = 0,
+            k0 = 1;
+
+          for (let i = 0; i < cf.length; i++) {
+            const a = cf[i];
+
+            const h = a * h1 + h0;
+            const k = a * k1 + k0;
+
+            result.push({ num: h, den: k });
+
+            h0 = h1;
+            h1 = h;
+            k0 = k1;
+            k1 = k;
+          }
+
+          return result;
+        }
+        function approximateFraction(x, maxDen = 10000) {
+          const cf = continuedFraction(x);
+          const convs = convergents(cf);
+
+          let best = convs[0];
+
+          for (const frac of convs) {
+            if (frac.den > maxDen) break;
+            best = frac;
+          }
+
+          return best;
+        }
+        return approximateFraction(a);
       }
     } else {
       throw new Error("");

@@ -12,7 +12,6 @@ submitButton.addEventListener("click", (e) => {
     coefficients.a,
     coefficients.b,
     coefficients.c,
-    "expression",
     true,
   );
   let HTMLresults = formatToLATEX(result.result);

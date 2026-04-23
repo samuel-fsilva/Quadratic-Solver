@@ -86,7 +86,7 @@ function setResultBox(a, d) {
   resultBoxChildren.result.innerHTML = `<div><latex-js style="color: black; scale: 1.4;">$$${chosenletter}_{1}=${a[0]}$$</latex-js></div><div><latex-js style="color: black; scale: 1.4;">$$${chosenletter}_{2}=${a[1]}$$</latex-js></div>`;
   resultBoxChildren.result.style.cssText =
     "display: grid; grid-template-rows: 1fr 1fr; grid-row: span 2; height: 60%;";
-  resultBox.append(resultBoxChildren.result);
   resultBoxChildren.delta.innerHTML = `<div><latex-js style="color: black; scale: 1.4;">$$\\Delta =${d}$$</latex-js></div>`;
-  resultBox.append(resultBoxChildren.delta);
+    resultBox.append(resultBoxChildren.result);
+    resultBox.append(resultBoxChildren.delta);
 }

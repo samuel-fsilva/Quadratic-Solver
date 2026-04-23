@@ -1,96 +1,81 @@
-function quadraticSolver(a, b, c, type, wantDelta) {
+function quadraticSolver(a, b, c, wantDelta) {
   let isEveryoneNumber = [a, b, c].every(
     (item) => typeof item === "number" && !isNaN(item),
   );
   if (isEveryoneNumber && a != 0) {
     const delta = b ** 2 - 4 * a * c;
-
-    if (type === undefined || type == "raw") {
-      const results = [
-        (-b + Math.sqrt(delta)) / (2 * a),
-        (-b - Math.sqrt(delta)) / (2 * a),
-      ];
-      if (wantDelta) {
-        return { results: results, delta: delta };
-      } else {
-        return results;
-      }
-    } else if (type == "expression") {
-      let EquationParts = {
-        eq: [-b, myMath.simplifiedSQRT(delta).result, 2 * a],
-        eqCoef: [-b, myMath.simplifiedSQRT(delta).result, 2 * a].map((item) =>
-          isNaN(parseInt(item)) ? 1 : parseInt(item),
-        ),
-        isDeltaPerfect: ![-b, myMath.simplifiedSQRT(delta).result, 2 * a][1]
-          .toString()
-          .includes("√"),
-        imaginary: delta < 0,
-      };
-      EquationParts.eqCoef = EquationParts.eqCoef.map(
-        (item) => item / myMath.mdc(EquationParts.eqCoef),
-      );
-      for (let i = 0; i < 4; i += 2) {
-        EquationParts.eq[i] = EquationParts.eqCoef[i];
-      }
-      let verif =
-        Number(EquationParts.isDeltaPerfect).toString() +
-        Number(EquationParts.imaginary).toString();
-      let tmp;
-      switch (verif) {
-        case "00":
-          tmp = EquationParts.eq[1].split("√");
-          if (EquationParts.eqCoef[1] != 1) {
-            tmp[0] = EquationParts.eqCoef[1];
-          } else {
-            tmp[0] = "";
-          }
-          EquationParts.eq[1] = tmp.join("√");
-          break;
-        case "01":
-          tmp = EquationParts.eq[1].split("i");
-          if (EquationParts.eqCoef[1] != 1) {
-            tmp[0] = EquationParts.eqCoef[1];
-          } else {
-            tmp[0] = "";
-          }
-          EquationParts.eq[1] = `(${tmp.join("")})i`;
-          break;
-        case "10":
-          EquationParts.eq[1] = EquationParts.eqCoef[1];
-          break;
-        case "11":
-          EquationParts.eq[1] = `${EquationParts.eqCoef[1]}i`;
-          break;
-        default:
-          break;
-      }
-      let Equation = {
-        numerator: `${EquationParts.eq[0] != 0 ? EquationParts.eq[0] : ""} ± ${EquationParts.eq[1]}`,
-        denominator: EquationParts.eq[2],
-        values: [
-          (EquationParts.eq[0] + EquationParts.eq[1]) / EquationParts.eq[2],
-          (EquationParts.eq[0] - EquationParts.eq[1]) / EquationParts.eq[2],
-        ],
-      };
-      let response = {
-        result: "",
-      };
-      if (verif == "10") {
-        response.result = Equation.values;
-      } else {
-        if (Equation.denominator == 1) {
-          response.result = Equation.numerator;
-        } else {
-          response.result = `(${Equation.numerator}) / ${Equation.denominator}`;
-        }
-      }
-      if (wantDelta) {
-        response.delta = delta;
-      }
-      return response;
-    } else {
-      throw new Error("wrong type specification");
+    let EquationParts = {
+      eq: [-b, myMath.simplifiedSQRT(delta).result, 2 * a],
+      eqCoef: [-b, myMath.simplifiedSQRT(delta).result, 2 * a].map((item) =>
+        isNaN(parseInt(item)) ? 1 : parseInt(item),
+      ),
+      isDeltaPerfect: ![-b, myMath.simplifiedSQRT(delta).result, 2 * a][1]
+        .toString()
+        .includes("√"),
+      imaginary: delta < 0,
+    };
+    EquationParts.eqCoef = EquationParts.eqCoef.map(
+      (item) => item / myMath.mdc(EquationParts.eqCoef),
+    );
+    for (let i = 0; i < 4; i += 2) {
+      EquationParts.eq[i] = EquationParts.eqCoef[i];
     }
+    let verif =
+      Number(EquationParts.isDeltaPerfect).toString() +
+      Number(EquationParts.imaginary).toString();
+    let tmp;
+    switch (verif) {
+      case "00":
+        tmp = EquationParts.eq[1].split("√");
+        if (EquationParts.eqCoef[1] != 1) {
+          tmp[0] = EquationParts.eqCoef[1];
+        } else {
+          tmp[0] = "";
+        }
+        EquationParts.eq[1] = tmp.join("√");
+        break;
+      case "01":
+        tmp = EquationParts.eq[1].split("i");
+        if (EquationParts.eqCoef[1] != 1) {
+          tmp[0] = EquationParts.eqCoef[1];
+        } else {
+          tmp[0] = "";
+        }
+        EquationParts.eq[1] = `(${tmp.join("")})i`;
+        break;
+      case "10":
+        EquationParts.eq[1] = EquationParts.eqCoef[1];
+        break;
+      case "11":
+        EquationParts.eq[1] = `${EquationParts.eqCoef[1]}i`;
+        break;
+      default:
+        break;
+    }
+    let Equation = {
+      numerator: `${EquationParts.eq[0] != 0 ? EquationParts.eq[0] : ""} ± ${EquationParts.eq[1]}`,
+      denominator: EquationParts.eq[2],
+      values: [
+        (EquationParts.eq[0] + EquationParts.eq[1]) / EquationParts.eq[2],
+        (EquationParts.eq[0] - EquationParts.eq[1]) / EquationParts.eq[2],
+      ],
+    };
+    let response = {
+      result: "",
+    };
+    if (verif == "10") {
+      response.result = Equation.values;
+    } else {
+      if (Equation.denominator == 1) {
+        response.result = Equation.numerator;
+      } else {
+        response.result = `(${Equation.numerator}) / ${Equation.denominator}`;
+      }
+    }
+    if (wantDelta) {
+      response.delta = delta;
+    }
+    return response;
   } else {
     throw new Error("invalid numbers parameters");
   }

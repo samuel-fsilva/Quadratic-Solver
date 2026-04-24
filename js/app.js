@@ -14,6 +14,7 @@ submitButton.addEventListener("click", (e) => {
     coefficients.c,
     true,
   );
+  setGraph(coefficients.a, coefficients.b, coefficients.c);
   let HTMLresults = formatToLATEX(result.result);
 
   setResultBox(HTMLresults, result.delta);

@@ -9,6 +9,7 @@ const resultBox = document.getElementById("result-box");
 const variableInputs = document.querySelectorAll(".variable-input");
 const selectElements = card.querySelectorAll("select");
 const resultBoxPosition = parseInt(window.getComputedStyle(resultBox).left);
+const chart = document.getElementById("chart")
 
 submitButton.addEventListener("mouseenter", () => {
   submitButton.children[0].style.display = "flex";

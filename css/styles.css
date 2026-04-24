@@ -150,6 +150,7 @@ button svg {
   overflow: hidden;
   padding-top: 50px;
   padding-bottom: 50px;
+  grid-template-rows: 1fr 1fr;
 }
 #result-box {
   position: relative;
@@ -158,4 +159,9 @@ button svg {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: repeat(3, 1fr);
+}
+#graph-box{
+  display: flex;
+ justify-content: center;
+ align-items: center;
 }

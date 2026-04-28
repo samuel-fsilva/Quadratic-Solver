@@ -31,6 +31,19 @@ variableInputs.forEach((varInput) => {
 function formatToLATEX(a) {
   let temp;
   if (Array.isArray(a)) {
+    if (a.some((n) => typeof n == "string")) {
+      a.forEach((n, i) => {
+        if (typeof n == "string") {
+          console.log(n);
+
+          temp = n.split("/");
+          a[i] = `\\frac{${temp[0]}}{${temp[1]}}`;
+
+          console.log(n);
+        }
+      });
+    }
+    console.log(a);
     return a;
   } else if (typeof a == "string") {
     if (a.includes("/")) {
@@ -79,14 +92,21 @@ function setResultBox(a, d) {
     result: document.createElement("div"),
     delta: document.createElement("div"),
   };
+  let valDisplay;
+  let areVluesEqual = a[0] == a[1];
+  if (areVluesEqual) {
+    valDisplay = "none";
+  } else {
+    valDisplay = "flex";
+  }
   resultBox.innerHTML = "";
   resultBoxChildren.equation.innerHTML = `<latex-js style="color: black;">$$${hiddenPlus(selectElements[0].value)}${numberValidation(Math.abs(coefficients.a))}\\text{${chosenletter}}^{2}${selectElements[1].value}${numberValidation(Math.abs(coefficients.b))}\\text{${chosenletter}}${selectElements[2].value}${Math.abs(coefficients.c)} = 0$$</latex-js>`;
   resultBoxChildren.equation.style.gridColumn = "span 2";
   resultBox.append(resultBoxChildren.equation);
-  resultBoxChildren.result.innerHTML = `<div><latex-js style="color: black; scale: 1.4;">$$${chosenletter}_{1}=${a[0]}$$</latex-js></div><div><latex-js style="color: black; scale: 1.4;">$$${chosenletter}_{2}=${a[1]}$$</latex-js></div>`;
+  resultBoxChildren.result.innerHTML = `<div><latex-js style="color: black; scale: 1.4;">$$${chosenletter}${areVluesEqual ? "" : "_{1}"}=${a[0]}$$</latex-js></div><div><latex-js style="color: black; scale: 1.4; display: ${valDisplay}">$$${chosenletter}_{2}=${a[1]}$$</latex-js></div>`;
   resultBoxChildren.result.style.cssText =
     "display: grid; grid-template-rows: 1fr 1fr; grid-row: span 2; height: 60%;";
   resultBoxChildren.delta.innerHTML = `<div><latex-js style="color: black; scale: 1.4;">$$\\Delta =${d}$$</latex-js></div>`;
-    resultBox.append(resultBoxChildren.result);
-    resultBox.append(resultBoxChildren.delta);
+  resultBox.append(resultBoxChildren.result);
+  resultBox.append(resultBoxChildren.delta);
 }

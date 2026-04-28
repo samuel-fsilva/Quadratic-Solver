@@ -14,6 +14,7 @@ submitButton.addEventListener("click", (e) => {
     coefficients.c,
     true,
   );
+  console.log(result.result)
   let HTMLresults = formatToLATEX(result.result);
 
   setResultBox(HTMLresults, result.delta);

@@ -64,6 +64,18 @@ function quadraticSolver(a, b, c, wantDelta) {
       result: "",
     };
     if (verif == "10") {
+      console.log(10)
+      for (let i = 0; i < Equation.values.length; i++) {
+        console.log(Number.isInteger(Equation.values[i]))
+        Equation.values[i] = Number.isInteger(Equation.values[i])
+          ? Equation.values[i]
+          : myMath.toFrac(Equation.values[i]);
+
+          if (typeof Equation.values[i] == "object") {
+          Equation.values[i] = `${Equation.values[i].num}/${Equation.values[i].den}`;
+        }
+      }
+      console.log(Equation.values);
       response.result = Equation.values;
     } else {
       if (Equation.denominator == 1) {

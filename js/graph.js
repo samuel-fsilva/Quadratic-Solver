@@ -25,11 +25,19 @@ function toFloatFix(a) {
 
 function setGraph(a, b, c) {
   points = [];
-  for (let i = -10; i <= 10; i += 1) {
+  const graphVertix = -b / (2 * a);
+  const pointsAmount = 5;
+  const graphRate = 0.1;
+  console.log(quadraticSolver(a, b, c));
+  for (
+    let i = graphVertix - pointsAmount;
+    i <= graphVertix + pointsAmount;
+    i += graphRate
+  ) {
     points.push({ x: toFloatFix(i), y: toFloatFix(a * i ** 2 + b * i + c) });
   }
 
-  ((myChart.data = {
+  myChart.data = {
     datasets: [
       {
         label: `y = ${a}x² - ${b}x + ${c}`,
@@ -39,12 +47,20 @@ function setGraph(a, b, c) {
         borderColor: "blue",
       },
     ],
-  }),
-    console.log(points));
-  myChart.options.scales.y.max = a > 0 ? points[20].y : -b / a;
+  };
+  console.log("graph's vertex: " + graphVertix);
+  console.log(points);
+
+  myChart.options.scales.y.max = Math.max(
+    0,
+    points[Math.floor(points.length * 0.8)].y,
+  );
+  myChart.options.scales.y.min = Math.min(
+    0,
+    points[Math.ceil(points.length * 0.2)].y,
+  );
 
   myChart.update();
-  console.log(myChart.data.datasets[0]);
 }
 let myChart = new Chart(chart, {
   type: "line",
@@ -62,9 +78,28 @@ let myChart = new Chart(chart, {
   options: {
     scales: {
       x: { type: "linear", position: "bottom" },
-      y: { type: "linear" },
+      y: {
+        type: "linear",
+        grid: {
+          color: (context) => {
+            if (context.tick.value === 0) {
+              return "#000";
+            }
+            return "#ccc";
+          },
+          lineWidth: (context) => {
+            return context.tick.value === 0 ? 2 : 1;
+          },
+        },
+      },
+    },
+    plugins: {
+      legend: {
+        display: false,
+      },
     },
     responsive: true,
     maintainAspectRatio: false,
+    animation: false,
   },
 });

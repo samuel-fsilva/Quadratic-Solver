@@ -30,7 +30,7 @@ Live Demo: https://samuel-fsilva.github.io/Quadratic-Solver/
   - Signs (+ / −)
   - Coefficients (a, b, c)
   - Variables
-- These inputs are visually combined to resemble a single expression: ax² + bx + c = 0
+- These inputs are visually combined to resemble a single expression: $ax^{2} + bx + c = 0$
 
 
 **Why this approach?**
@@ -44,8 +44,8 @@ Live Demo: https://samuel-fsilva.github.io/Quadratic-Solver/
 - No decimal approximations
 - Results are expressed as:
 - Simplified fractions
-- Simplified radicals (e.g., √72 → 6√2)
-- Complex numbers when Δ < 0
+- Simplified radicals (e.g., $\sqrt{72} → 6\sqrt{2}$)
+- Complex numbers when $\Delta < 0$
 
 ---
 
@@ -81,7 +81,7 @@ Handles user interaction through structured fields:
 Reusable functions responsible for computation:
 
 #### ➤ Quadratic Solver
-Implements the quadratic formula: x = (-b ± √(b² - 4ac)) / (2a)
+Implements the quadratic formula: $x = \frac{-b ± \sqrt{b² - 4ac}}{2a} $
 
 - Handles:
   - Two real roots
@@ -98,7 +98,7 @@ Implements the quadratic formula: x = (-b ± √(b² - 4ac)) / (2a)
 #### ➤ Square Root Simplifier
 - Extracts perfect square factors
 
-Example: √72 → 6√2
+Example: $\sqrt{72} → 6\sqrt{2}$
 
 ---
 
@@ -111,9 +111,11 @@ Example: √72 → 6√2
 
 ## 🧪 Example
 
-Input: 12x² + 6x + 7 = 0
-Output: (-3 ± 5√3 i) / 12
-With: Δ = -300
+Input: $12x^{2} + 6x + 7 = 0$
+
+Output: $\frac{-3 ± 5 \sqrt{3}i}{12}$
+
+With: $\Delta = -300$
 
 
 ---
@@ -185,6 +187,9 @@ project/
 
 ## 📄 License
 This project is open for learning purposes. Feel free to explore and modify.
+## Author
+
+GitHub: https://github.com/samuel-fsilva
 
 ## Author
 

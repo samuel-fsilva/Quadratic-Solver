@@ -19,7 +19,7 @@ Instead of behaving like a typical calculator, this application aims to present 
 
 ## Preview
 
-![Preview](images/screenshoot.png)
+![Preview](images/screenshot.png)
 Live Demo: https://samuel-fsilva.github.io/Quadratic-Solver/
 
 ---

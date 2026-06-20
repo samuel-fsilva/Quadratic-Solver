@@ -73,7 +73,7 @@ function setResultBox(a, d) {
   for (i in resultDOMData) {
     resultDOMData[i].innerHTML = "";
   }
-  let labels = ["x_{1}", "x_{2}", "\\Delta"];
+  let labels = [`${chosenletter}_{1}`, `${chosenletter}_{2}`, "\\Delta"];
   let data = [a, d].flat().forEach(function (value, index) {
     let latexHTML = document.createElement("latex-js");
     latexHTML.innerText = `$$\\Large{${labels[index]}=${value}}$$`;
@@ -87,4 +87,3 @@ function scrollTo(element) {
     block: "start",
   });
 }
-

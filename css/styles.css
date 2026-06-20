@@ -69,10 +69,6 @@
         padding-block: none;
         padding-inline: none;
       }
-      #zero-span {
-        position: relative;
-        top: 2px;
-      }
       #input sup {
         position: relative;
         right: 7px;
@@ -135,7 +131,7 @@
         grid-template-rows: 8vh 1fr;
       }
       .hidden {
-        display: none;
+        display: none !important;
       }
       #results {
         display: grid;

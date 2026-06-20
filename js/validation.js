@@ -22,16 +22,16 @@ function justLetters(str) {
 }
 
 function numberValidation(n) {
-  if (n == 1) {
-    return "";
+  if (Math.abs(n) == 1) {
+    return n.replace("1", "");
   } else {
     return n;
   }
 }
 
 function hiddenPlus(s) {
-  if (s == "+") {
-    return "";
+  if (s.includes("+")) {
+    return s.replace("+", "");
   } else {
     return s;
   }

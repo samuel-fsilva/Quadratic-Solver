@@ -167,17 +167,14 @@ project/
 │── fonts/
 │   └── latinmodern-math.otf
 │── images/
-│   └── arrow-circle.svg
+│   └── calculator.svg
 │   └── go-forward.svg
+│   └── screenshot.png
 │── js/
-│   └── animations.js
 │   └── app.js
 │   └── calc.js
 │   └── dom.js
 │   └── validation.js
-│── old/
-│   └── old.html
-│   └── styles.css
 │── index.html
 │── 
 │── README.md

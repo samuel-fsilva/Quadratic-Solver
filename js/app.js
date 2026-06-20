@@ -1,10 +1,10 @@
 const coefficients = { a: null, b: null, c: null };
 window.addEventListener("DOMContentLoaded", () => {
-  setSelectTransparent();
   inputs.a.focus();
 });
 
 submitButton.addEventListener("click", (e) => {
+  unhideResultBox();
   coefficients.a = parseInt(selectElements[0].value + inputs.a.value);
   coefficients.b = parseInt(selectElements[1].value + inputs.b.value);
   coefficients.c = parseInt(selectElements[2].value + inputs.c.value);
@@ -14,8 +14,9 @@ submitButton.addEventListener("click", (e) => {
     coefficients.c,
     true,
   );
-  console.log(result.result)
   let HTMLresults = formatToLATEX(result.result);
+  console.log(HTMLresults)
 
   setResultBox(HTMLresults, result.delta);
+  scrollTo(resultBox)
 });

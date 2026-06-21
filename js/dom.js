@@ -5,6 +5,7 @@ const inputs = {
   b: document.getElementById("c2"),
   c: document.getElementById("c3"),
 };
+const inputsArray = Object.values(inputs);
 const variableInputs = document.querySelectorAll(".variable-input");
 const selectElements = card.querySelectorAll("select");
 const resultBox = document.getElementById("result-box");
@@ -62,20 +63,27 @@ function setResultBox(a, d) {
       rawCoefficients[i] = hiddenPlus(rawCoefficients[i]);
     }
     if (i != 2) {
-      rawCoefficients[i] = numberValidation(rawCoefficients[i]);
+      rawCoefficients[i] = isThatNumberOne(rawCoefficients[i]);
     }
   }
   console.log(rawCoefficients);
-  let equation = `${rawCoefficients[0] + chosenletter}^{2}${rawCoefficients[1]}${chosenletter}${rawCoefficients[2]}= 0`;
+  let equation = `\\text{Equation: } ${rawCoefficients[0]}\\text{${chosenletter}}^{2}${rawCoefficients[1]}\\text{${chosenletter}}${rawCoefficients[2]}= 0`;
   let latexTitle = document.createElement("latex-js");
   latexTitle.innerText = `$$\\LARGE{${equation}}$$`;
   resultBoxTitle.appendChild(latexTitle);
   for (i in resultDOMData) {
     resultDOMData[i].innerHTML = "";
   }
-  let labels = [`${chosenletter}_{1}`, `${chosenletter}_{2}`, "\\Delta"];
+  let labels = [
+    `\\text{${chosenletter}}_{1}`,
+    `\\text{${chosenletter}}_{2}`,
+    "\\Delta",
+  ];
   let data = [a, d].flat().forEach(function (value, index) {
     let latexHTML = document.createElement("latex-js");
+    if (index == 1 && a[0] == a[1]) {
+      latexHTML.classList.add("hidden");
+    }
     latexHTML.innerText = `$$\\Large{${labels[index]}=${value}}$$`;
     resultDOMData[index].appendChild(latexHTML);
   });
@@ -87,3 +95,51 @@ function scrollTo(element) {
     block: "start",
   });
 }
+inputsArray[0].addEventListener("mouseenter", (e) => {
+  selectElements[0].classList.remove("invisible");
+});
+inputsArray[0].addEventListener("mouseleave", (e) => {
+  if (selectElements[0].value == "+") {
+    selectElements[0].classList.add("invisible");
+  }
+});
+selectElements[0].addEventListener("mouseenter", (e) => {
+  selectElements[0].classList.remove("invisible");
+});
+
+selectElements[0].addEventListener("mouseleave", (e) => {
+  if (selectElements[0].value == "+") {
+    selectElements[0].classList.add("invisible");
+  }
+});
+
+function hideInput(input) {
+  setTimeout(() => {
+    if (
+      input.value == 1 &&
+      !input.matches(":hover") &&
+      !input.matches(":focus")
+    ) {
+      input.classList.add("hidden");
+    }
+  }, 2000);
+}
+inputsArray.toSpliced(-1, 1).forEach(function (input) {
+  input.addEventListener("input", () => {
+    hideInput(input);
+  });
+  input.addEventListener("mouseleave", () => {
+    hideInput(input);
+  });
+});
+
+[...variableInputs].forEach(function (input, index) {
+  input.addEventListener("mouseenter", () => {
+    if (inputsArray[index].classList.contains("hidden")) {
+      inputsArray[index].classList.remove("hidden");
+    }
+    input.addEventListener("mouseleave", () => {
+      hideInput(inputsArray[index]);
+    });
+  });
+});

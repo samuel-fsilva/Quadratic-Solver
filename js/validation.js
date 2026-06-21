@@ -1,4 +1,9 @@
 let chosenletter = "x";
+/* const inputs = {
+  a: document.getElementById("c1"),
+  b: document.getElementById("c2"),
+  c: document.getElementById("c3"),
+}; */
 variableInputs.forEach((input) => {
   input.addEventListener("input", (e) => {
     chosenletter = e.target.value;
@@ -21,7 +26,7 @@ function justLetters(str) {
   return /^[A-Za-z]+$/.test(str);
 }
 
-function numberValidation(n) {
+function isThatNumberOne(n) {
   if (Math.abs(n) == 1) {
     return n.replace("1", "");
   } else {
@@ -36,3 +41,19 @@ function hiddenPlus(s) {
     return s;
   }
 }
+
+function isANumber(value) {
+  if (!isNaN(value)) {
+    return value;
+  } else {
+    return "";
+  }
+}
+
+inputsArray.forEach((input) =>
+  input.addEventListener("input", (e) => {
+    e.target.value = isANumber(e.target.value);
+    
+  }),
+);
+

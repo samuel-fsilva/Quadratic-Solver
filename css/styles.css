@@ -22,6 +22,9 @@ h1 {
   font-size: 70px;
   text-align: center;
 }
+h4 {
+  margin: 10px;
+}
 .title-span {
   color: var(--cool-orange);
 }
@@ -144,7 +147,7 @@ input:focus {
 #equation-title {
   border-bottom: 1px solid #ffb65c84;
 }
-#result-box h3{
+#result-box h3 {
   margin: 0;
 }
 #result-box latex-js {
@@ -152,8 +155,11 @@ input:focus {
   font-size: 40px;
   scale: 1.5;
 }
-#delta{
+#delta {
   margin-top: 10px;
+}
+.result-data {
+  scale: 1.2;
 }
 #graph-box {
   display: grid;
@@ -168,11 +174,12 @@ input:focus {
   text-align: center;
 }
 #graph {
-  aspect-ratio: 1/1;
-  height: 200px;
-  background: rgb(90, 90, 90);
+  aspect-ratio: 3/2;
+  width: 80%;
+  background: rgb(46, 46, 46);
   border-radius: 3px;
   justify-self: center;
+  margin-bottom: 10%;
 }
 .input-focus {
   border: 7px solid #ffd379 !important;

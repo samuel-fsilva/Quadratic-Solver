@@ -141,7 +141,10 @@ input:focus {
   display: grid;
   grid-template-rows: repeat(3, 1fr);
 }
-#result-box h3 {
+#equation-title {
+  border-bottom: 1px solid #ffb65c84;
+}
+#result-box h3{
   margin: 0;
 }
 #result-box latex-js {
@@ -149,8 +152,8 @@ input:focus {
   font-size: 40px;
   scale: 1.5;
 }
-.result-data {
-  scale: 1.1;
+#delta{
+  margin-top: 10px;
 }
 #graph-box {
   display: grid;

@@ -15,7 +15,6 @@ submitButton.addEventListener("click", (e) => {
     true,
   );
   let HTMLresults = formatToLATEX(result.result);
-  console.log(HTMLresults)
 
   setResultBox(HTMLresults, result.delta);
   scrollTo(resultBox)

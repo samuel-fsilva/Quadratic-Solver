@@ -47,9 +47,8 @@ function formatToLATEX(a) {
         `\\sqrt{${radix}}`,
       );
     }
-    console.log(a);
+
     a = a.replace(/\(|\)/g, "");
-    console.log([a.replace("±", "+"), a.replace("±", "-")]);
     return [a.replace("±", "+"), a.replace("±", "-")];
   }
 }
@@ -66,7 +65,6 @@ function setResultBox(a, d) {
       rawCoefficients[i] = isThatNumberOne(rawCoefficients[i]);
     }
   }
-  console.log(rawCoefficients);
   let equation = `\\text{Equation: } ${rawCoefficients[0]}\\text{${chosenletter}}^{2}${rawCoefficients[1]}\\text{${chosenletter}}${rawCoefficients[2]}= 0`;
   let latexTitle = document.createElement("latex-js");
   latexTitle.innerText = `$$\\LARGE{${equation}}$$`;
@@ -84,7 +82,7 @@ function setResultBox(a, d) {
     if (index == 1 && a[0] == a[1]) {
       latexHTML.classList.add("hidden");
     }
-    latexHTML.innerText = `$$\\Large{${labels[index]}=${value}}$$`;
+    latexHTML.innerText = `$$\\normalsize{${labels[index]}=${value}}$$`;
     resultDOMData[index].appendChild(latexHTML);
   });
 }
@@ -141,5 +139,50 @@ inputsArray.toSpliced(-1, 1).forEach(function (input) {
     input.addEventListener("mouseleave", () => {
       hideInput(inputsArray[index]);
     });
+  });
+});
+
+inputsArray.forEach(function (input, index) {
+  input.addEventListener("input", function () {
+    setTimeout(() => {
+      hideNullTerm(input, index);
+    }, 2000);
+  });
+});
+
+function hideNullTerm(input, index) {
+  if (input.value.toString() === "0") {
+    selectElements[index].classList.add("hidden");
+    input.classList.add("hidden");
+    if (variableInputs[index]) {
+      variableInputs[index].classList.add("hidden");
+    }
+  }
+}
+
+function showNullTerm(input, index) {
+  if (!input.matches(":hover") && !input.matches(":focus")) {
+    selectElements[index].classList.remove("hidden");
+    input.classList.remove("hidden");
+    if (variableInputs[index]) {
+      variableInputs[index].classList.remove("hidden");
+    }
+  }
+}
+
+inputBox.addEventListener("mouseenter", () => {
+  inputsArray.forEach(function (input, index) {
+    showNullTerm(input, index);
+  });
+});
+
+inputBox.addEventListener("mouseleave", () => {
+  inputsArray.forEach(function (input, index) {
+    setTimeout(() => {
+      hideNullTerm(input, index);
+    }, 2000);
+    if (input != inputsArray[2]) {
+      hideInput(input)
+    }
   });
 });

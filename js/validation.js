@@ -1,9 +1,4 @@
 let chosenletter = "x";
-/* const inputs = {
-  a: document.getElementById("c1"),
-  b: document.getElementById("c2"),
-  c: document.getElementById("c3"),
-}; */
 variableInputs.forEach((input) => {
   input.addEventListener("input", (e) => {
     chosenletter = e.target.value;
@@ -42,8 +37,8 @@ function hiddenPlus(s) {
   }
 }
 
-function isANumber(value) {
-  if (!isNaN(value)) {
+function isAValidNumber(value) {
+  if (!isNaN(value) && Number.isInteger(Number(value)) && value >= 0) {
     return value;
   } else {
     return "";
@@ -52,8 +47,6 @@ function isANumber(value) {
 
 inputsArray.forEach((input) =>
   input.addEventListener("input", (e) => {
-    e.target.value = isANumber(e.target.value);
-    
+    e.target.value = isAValidNumber(e.target.value);
   }),
 );
-

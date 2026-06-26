@@ -26,7 +26,12 @@
       </div>
       <div id="input">
         <div id="input-box">
-          <select name="" id="signal-select01" class="signal-select invisible" autocomplete="off">
+          <select
+            name=""
+            id="signal-select01"
+            class="signal-select invisible"
+            autocomplete="off"
+          >
             <option value="+" selected>+</option>
             <option value="-">-</option>
           </select>
@@ -47,7 +52,12 @@
             pattern="[A-Za-z]"
           />
           <sup>2</sup>
-          <select name="" id="signal-select02" class="signal-select" autocomplete="off">
+          <select
+            name=""
+            id="signal-select02"
+            class="signal-select"
+            autocomplete="off"
+          >
             <option value="+" selected>+</option>
             <option value="-">-</option>
           </select>
@@ -67,7 +77,12 @@
             maxlength="1"
             pattern="[A-Za-z]"
           />
-          <select name="" id="signal-select03" class="signal-select" autocomplete="off">
+          <select
+            name=""
+            id="signal-select03"
+            class="signal-select"
+            autocomplete="off"
+          >
             <option value="+" selected>+</option>
             <option value="-">-</option>
           </select>
@@ -83,8 +98,11 @@
         <button id="submit"><span id="submit-text">=</span></button>
       </div>
       <div id="result-box" class="hidden">
-        <h3><latex-js>$$\LARGE{ax^{2}+bx+c=0}$$</latex-js></h3>
+        <h3 id="equation-title">
+          <latex-js>$$\LARGE{ax^{2}+bx+c=0}$$</latex-js>
+        </h3>
         <div id="results">
+          <h3><latex-js>$$\LARGE{\text{Results:}}$$</latex-js></h3>
           <div id="result01" class="result-data">
             <latex-js>$$x_{1}=$$</latex-js>
           </div>

@@ -16,6 +16,7 @@ body {
   background: #252525;
   color: white;
   overflow-x: hidden;
+  margin: 0;
 }
 h1 {
   color: white;
@@ -68,16 +69,16 @@ select {
 }
 
 #input input {
-  min-width: 0.8em;
-  width: 0.8em;
+  min-width: 0.6em;
+  width: 0.6em;
   display: inline;
   font-size: 1em;
   padding-block: none;
   padding-inline: none;
+  text-align: center;
 }
 #input sup {
   position: relative;
-  right: 7px;
   font-size: 0.65em;
 }
 #input input::placeholder {
@@ -96,6 +97,7 @@ select {
   font-size: 0.7em;
   position: relative;
   left: 3px;
+  margin-right: 5px;
 }
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
@@ -104,10 +106,8 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 input[type="number"] {
   -moz-appearance: textfield;
-  text-align: right;
 }
 #input [type="text"] {
-  text-align: left;
 }
 input:focus {
   outline: none;
